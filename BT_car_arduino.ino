@@ -10,12 +10,7 @@ int right_f = 10;
 //L298N speed pins
 int left_s = 5;
 int right_s = 6;
-// speed leds
-int red = 11;
-int blue = 12;
-int green = 13;
-
-int  hiz = 120; 
+int  hiz = 130; 
 
 void setup() 
 {
@@ -30,16 +25,13 @@ void setup()
   pinMode(right_f, OUTPUT);
   pinMode(left_s, OUTPUT);
   pinMode(right_s, OUTPUT);
-  pinMode(red, OUTPUT);
-  pinMode(blue, OUTPUT);
-  pinMode(green, OUTPUT);
 }
 void loop(){
 if (hc06.available()){
 Serial.println(data);
- data = hc06.read();
+data = hc06.read();
 
-  if (data == '0') {hiz =100;}
+     if (data == '0') {hiz =100;}
   else if (data=='1') {hiz =110;}
   else if (data=='2') {hiz =120;}
   else if (data=='3') {hiz =130;}
@@ -53,12 +45,7 @@ Serial.println(data);
       analogWrite(left_s, hiz);
       analogWrite(right_s, hiz);
   }
-if (data != 'S'){ 
-digitalWrite(blue, HIGH);
-delay(5);
-digitalWrite(blue, LOW);
-}
-  
+
       if (data == 'F'){
         forward();
         }
